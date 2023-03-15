@@ -20,7 +20,7 @@ let books = [
     author: 'F. Scott Fitzgerald',
     releaseDate: 'April 10, 1925',
     price: 12.99,
-    image: 'https://i.pinimg.com/originals/53/d3/39/53d3398484fa21c0480e50bf85f38609.jpg'
+    image: 'https://tse1.mm.bing.net/th?id=OIP.dAVRw87IavkvuX_894QEzwAAAA&pid=Api'
   },
   {
     id: 1,
