@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Basket</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="fonts/fontawesome/css/all.css">
 </head>
@@ -9,7 +12,7 @@
   <nav class="bg-gray-800 p-6">
     <div class="container mx-auto flex justify-between items-center">
       <a href="/" class="text-lg font-semibold text-white hover:text-gray-400">Bookstore</a>
-      <a href="/basket" class="flex items-center text-white hover:text-gray-400">
+      <a href="/cart" class="flex items-center text-white hover:text-gray-400">
         <span class="font-bold">CART</span>
         <span class="px-2">/</span>
         <span class="font-bold">${{totalPrice}}</span>
@@ -20,7 +23,7 @@
 
   <div class="container mx-auto py-10">
     <h1 class="text-3xl font-bold mb-6">Cart</h1>
-    {{#if basket.length}}
+    {{#if cart.length}}
       <table class="w-full table-auto mb-6">
         <thead>
           <tr class="bg-gray-200 text-gray-700">
@@ -31,13 +34,13 @@
           </tr>
         </thead>
         <tbody>
-          {{#each basket}}
+          {{#each cart}}
             <tr class="border-b border-gray-200">
               <td class="text-left py-2 px-4">{{this.title}}</td>
               <td class="text-left py-2 px-4">{{this.author}}</td>
               <td class="text-left py-2 px-4">${{this.price}}</td>
               <td class="text-left py-2 px-4">
-                <form method="POST" action="/remove-from-basket">
+                <form method="POST" action="/remove-from-cart">
                   <input type="hidden" name="id" value="{{this.id}}">
                   <button type="submit" class="text-red-500 hover:text-red-700">
                     <i class="fa-solid fa-xmark-large text-xl"></i>
@@ -54,7 +57,7 @@
         </button>
       </form>
     {{else}}
-      <p>Your basket is empty.</p>
+      <p>Your cart is empty.</p>
     {{/if}}
   </div>
 

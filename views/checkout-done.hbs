@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookstore - Checkout Done</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="fonts/fontawesome/css/all.css">
+</head>
+<body>
+  <nav class="bg-gray-800 p-6">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="/" class="text-lg font-semibold text-white hover:text-gray-400">Bookstore</a>
+      <a href="/cart" class="flex items-center text-white hover:text-gray-400">
+        <span class="font-bold">CART</span>
+        <span class="px-2">/</span>
+        <span class="font-bold">${{totalPrice}}</span>
+        <i class="fas fa-shopping-basket px-2"></i>
+      </a>
+    </div>
+  </nav>
+
+  <div class="container mx-auto py-10">
+    <div class="max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+      <div class="md:flex">
+        <div class="p-8">
+          <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Thank You for Your Purchase!</div>
+          <p class="mt-2 text-gray-500">Total Price: ${{totalPrice}}</p>
+          <p class="mt-2 text-gray-500">Delivery Address: {{address}}</p>
+          <p class="mt-2 text-gray-500">Our team will contact you shortly with further details regarding your order and shipping.</p>
+          <p class="mt-2 text-gray-500">Your Tracking Number is: {{trackingNumber}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

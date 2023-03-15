@@ -1,16 +1,19 @@
-//! Express
+//!! Express
 const express = require('express');
 const hbs = require('hbs');
 const path = require('path');
 const app = express();
 
-//! Express Middleware
+//!! Express Middleware
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 
-//! Handlebars
+//!! Handlebars
 app.set('view engine', 'hbs');
 app.set('views', 'views');
+
+//!! Faker
+const { faker } = require('@faker-js/faker/locale/ru');
 
 //? Set up book data
 let books = [
@@ -20,7 +23,8 @@ let books = [
     author: 'F. Scott Fitzgerald',
     releaseDate: 'April 10, 1925',
     price: 12.99,
-    image: 'https://tse1.mm.bing.net/th?id=OIP.dAVRw87IavkvuX_894QEzwAAAA&pid=Api'
+    image: 'https://tse1.mm.bing.net/th?id=OIP.dAVRw87IavkvuX_894QEzwAAAA&pid=Api',
+    description: ''
   },
   {
     id: 1,
@@ -37,46 +41,75 @@ let books = [
     releaseDate: 'June 8, 1949',
     price: 9.99,
     image: '/images/1984.png'
+  },
+  {
+    id: 3,
+    title: 'Harry Potter and the Chamber of Secrets',
+    author: 'J.K. Rowling',
+    releaseDate: 'August 1, 1994',
+    price: 12.99,
+    image: 'https://wallpaper.dog/large/198914.jpg'
   }
 ];
 
-//? Set up basket data
-let basket = [];
+//? Set up cart data
+let cart = [];
 
-//! Routes
+//!! Routes
+//////////////
+//! Cards
 //* Main page
 app.get('/', (req, res) => {
-  const totalPrice = basket.reduce((total, book) => total + book.price, 0);
+  const totalPrice = cart.reduce((total, book) => total + book.price, 0);
   res.render('index', { books, totalPrice });
 });
 
-//* Basket page
-app.get('/basket', (req, res) => {
-  const totalPrice = basket.reduce((total, book) => total + book.price, 0);
-  res.render('basket', { basket, totalPrice });
+//* Cart page
+app.get('/cart', (req, res) => {
+  const totalPrice = cart.reduce((total, book) => total + book.price, 0);
+  res.render('cart', { cart, totalPrice });
 });
 
-//* Add To Basket
-app.post('/add-to-basket', (req, res) => {
-  const bookId = req.body.bookId;
-  const book = books[bookId];
+//* Add To Cart
+app.post('/add-to-cart', (req, res) => {
+  let bookId = req.body.bookId;
+  let book = books[bookId];
   if (book) {
-    basket.push(book);
+    cart.push(book);
   }
   res.redirect('/');
 });
 
+//* Remove from Cart
+app.post('/remove-from-cart', (req, res) => {
+  let bookId = req.body.bookId;
+  let bookIndex = cart[bookId];
+  if (bookIndex != -1) {
+    cart.splice(bookIndex, 1);
+  }
+  res.redirect('/cart');
+});
+
+//* Checkout
 app.post('/checkout', (req, res) => {
-  const totalPrice = basket.reduce((total, book) => total + book.price, 0);
-  res.render('checkout', { basket, totalPrice });
+  const totalPrice = cart.reduce((total, book) => total + book.price, 0);
+  res.render('checkout', { cart, totalPrice });
 });
 
+//* Checkout Done
 app.post('/checkout-done', (req, res) => {
-  basket = [];
-  res.redirect('/basket');
+  const totalPrice = cart.reduce((total, book) => total + book.price, 0);
+  const trackingNumber = Math.floor(Math.random() * 1000000000); // Generate random tracking number
+  const { address, name } = req.body;
+  res.render('checkout-done', { totalPrice, address, name, trackingNumber });
+  cart = [];
 });
+//! End Cards
+//////////////
+//! Admin
 
-
-//! Start server
+//! End Admin
+//////////////
+//!! Start server
 const PORT = 80;
 app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
