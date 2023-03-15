@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Basket</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="fonts/fontawesome/css/all.css">
+</head>
+<body>
+  <nav class="bg-gray-800 p-6">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="/" class="text-lg font-semibold text-white hover:text-gray-400">Bookstore</a>
+      <a href="/basket" class="flex items-center text-white hover:text-gray-400">
+        <span class="font-bold">CART</span>
+        <span class="px-2">/</span>
+        <span class="font-bold">${{totalPrice}}</span>
+        <i class="fas fa-shopping-basket px-2"></i>
+      </a>
+    </div>
+  </nav>
+
+  <div class="container mx-auto py-10">
+    <h1 class="text-3xl font-bold mb-6">Basket</h1>
+    {{#if basket.length}}
+      <table class="w-full table-auto mb-6">
+        <thead>
+          <tr class="bg-gray-200 text-gray-700">
+            <th class="text-left py-2 px-4">Title</th>
+            <th class="text-left py-2 px-4">Author</th>
+            <th class="text-left py-2 px-4">Price</th>
+            <th class="text-left py-2 px-4">Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each basket}}
+            <tr class="border-b border-gray-200">
+              <td class="text-left py-2 px-4">{{this.title}}</td>
+              <td class="text-left py-2 px-4">{{this.author}}</td>
+              <td class="text-left py-2 px-4">${{this.price}}</td>
+              <td class="text-left py-2 px-4">
+                <form method="POST" action="/remove-from-basket">
+                  <input type="hidden" name="id" value="{{this.id}}">
+                  <button type="submit" class="text-red-500 hover:text-red-700">
+                    <svg class="h-5 w-5 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M10 0a10 10 0 1 0 10 10A10 10 0 0 0 10 0zm4.25 13.25a1.25 1.25 0 0 1-2.5 0l-1.75-7a1.25 1.25 0 0 1 2.5 0l1.75 7zM8.5 6.25a1.25 1.25 0 0 1 2.5 0v5.5a1.25 1.25 0 0 1-2.5 0V6.25z"/>
+                    </svg>
+                  </button>
+                </form>
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      <form method="POST" action="/checkout" class="text-right">
+        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+          Checkout
+        </button>
+      </form>
+    {{else}}
+      <p>Your basket is empty.</p>
+    {{/if}}
+  </div>
+
+</body>
+</html>

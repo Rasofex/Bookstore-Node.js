@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Bookstore</title>
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link rel="stylesheet" href="fonts/fontawesome/css/all.css">
+    </head>
+    <body>
+      <nav class="bg-gray-800 p-6">
+        <div class="container mx-auto flex justify-between items-center">
+          <a href="/" class="text-lg font-semibold text-white hover:text-gray-400">Bookstore</a>
+          <a href="/basket" class="flex items-center text-white hover:text-gray-400">
+            <span class="font-bold">CART</span>
+            <span class="px-2">/</span>
+            <span class="font-bold">${{totalPrice}}</span>
+            <i class="fas fa-shopping-basket px-2"></i>
+          </a>
+        </div>
+      </nav>
+
+      <div class="container mx-auto py-10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {{#each books}}
+            <div class="bg-white rounded-lg overflow-hidden shadow-md">
+              <img class="w-full h-64 object-cover" src="{{image}}" alt="{{title}}">
+              <div class="p-6">
+                <h2 class="font-bold text-2xl mb-2">{{title}}</h2>
+                <p class="text-gray-600 text-base mb-2">{{author}}</p>
+                <p class="text-gray-600 text-base mb-4">{{releaseDate}}</p>
+                <p class="font-bold text-2xl mb-2">${{price}}</p>
+                <form action="/add-to-basket" method="POST">
+                  <input type="hidden" name="bookId" value="{{id}}">
+                  <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                    Add to basket
+                  </button>
+                </form>
+              </div>
+            </div>
+          {{/each}}
+        </div>
+      </div>
+    </body>
+</html>

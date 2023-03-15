@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="fonts/fontawesome/css/all.css">
+</head>
+<body>
+  <nav class="bg-gray-800 p-6">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="/" class="text-lg font-semibold text-white hover:text-gray-400">Bookstore</a>
+      <a href="/basket" class="flex items-center text-white hover:text-gray-400">
+        <span class="font-bold">CART</span>
+        <span class="px-2">/</span>
+        <span class="font-bold">${{totalPrice}}</span>
+        <i class="fas fa-shopping-basket px-2"></i>
+      </a>
+    </div>
+  </nav>
+
+  <div class="container mx-auto py-10">
+    <h1 class="text-3xl font-bold mb-6">Checkout</h1>
+    {{#if basket.length}}
+      <table class="w-full table-auto mb-6">
+        <thead>
+          <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+            <th class="py-3 px-6 text-left">Title</th>
+            <th class="py-3 px-6 text-left">Author</th>
+            <th class="py-3 px-6 text-left">Price</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-600 text-sm font-light">
+          {{#each basket}}
+            <tr class="border-b border-gray-200">
+              <td class="text-left py-2 px-4">{{this.title}}</td>
+              <td class="text-left py-2 px-4">{{this.author}}</td>
+              <td class="text-left py-2 px-4">${{this.price}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+        <tfoot class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+          <tr>
+            <td class="py-3 px-6 text-left font-bold">Total:</td>
+            <td></td>
+            <td class="py-3 px-6 text-left font-bold">${{totalPrice}}</td>
+          </tr>
+        </tfoot>
+      </table>
+      <form action="/checkout-done" method="post">
+        <div class="mb-4">
+          <label for="name" class="block text-gray-700 font-bold mb-2">Name:</label>
+          <input type="text" id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+        </div>
+        <div class="mb-4">
+          <label for="address" class="block text-gray-700 font-bold mb-2">Address:</label>
+          <input type="text" id="address" name="address" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+        </div>
+        <div class="mb-4">
+          <label for="phone" class="block text-gray-700 font-bold mb-2">Phone:</label>
+          <input type="text" id="phone" name="phone" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+        </div>
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+          Place Order
+        </button>
+      </form>
+    {{else}}
+      <p class="text-lg">Your basket is empty.</p>
+    {{/if}}
+  </div>
+</body>
+</html>
