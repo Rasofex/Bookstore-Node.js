@@ -22,14 +22,14 @@
   </nav>
 
   <div class="container mx-auto py-10">
-    <h1 class="text-3xl font-bold mb-6">Checkout</h1>
+    <h1 class="text-3xl font-bold mb-6 text-indigo-500 font-semibold">Checkout</h1>
     {{#if cart.length}}
       <table class="w-full table-auto mb-6">
         <thead>
           <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-            <th class="py-3 px-6 text-left">Title</th>
-            <th class="py-3 px-6 text-left">Author</th>
-            <th class="py-3 px-6 text-left">Price</th>
+            <th class="py-3 px-6 text-left text-gray-500 font-semibold">Title</th>
+            <th class="py-3 px-6 text-left text-gray-500 font-semibold">Author</th>
+            <th class="py-3 px-6 text-left text-gray-500 font-semibold">Price</th>
           </tr>
         </thead>
         <tbody class="text-gray-600 text-sm font-light">
@@ -43,7 +43,7 @@
         </tbody>
         <tfoot class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
           <tr>
-            <td class="py-3 px-6 text-left font-bold">Total:</td>
+            <td class="py-3 px-6 text-left font-bold text-gray-500 font-semibold">Total:</td>
             <td></td>
             <td class="py-3 px-6 text-left font-bold">${{totalPrice}}</td>
           </tr>
@@ -51,23 +51,23 @@
       </table>
       <form action="/checkout-done" method="post">
         <div class="mb-4">
-          <label for="name" class="block text-gray-700 font-bold mb-2">Name:</label>
+          <label for="name" class="block text-gray-700 font-bold mb-2 text-gray-500 font-semibold">Name:</label>
           <input type="text" id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
         </div>
         <div class="mb-4">
-          <label for="address" class="block text-gray-700 font-bold mb-2">Address:</label>
+          <label for="address" class="block text-gray-700 font-bold mb-2 text-gray-500 font-semibold">Address:</label>
           <input type="text" id="address" name="address" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
         </div>
         <div class="mb-4">
-          <label for="phone" class="block text-gray-700 font-bold mb-2">Phone:</label>
+          <label for="phone" class="block text-gray-700 font-bold mb-2 text-gray-500 font-semibold">Phone:</label>
           <input type="text" id="phone" name="phone" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
         </div>
-        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+        <button type="submit" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded">
           Place Order
         </button>
       </form>
     {{else}}
-      <p class="text-lg">Your cart is empty.</p>
+      <p class="text-lg text-gray-500 font-semibold">Your cart is empty.</p>
     {{/if}}
   </div>
 </body>

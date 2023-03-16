@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../fonts/fontawesome/css/all.css">
+    <title>Admin Dashboard</title>
+  </head>
+  <body>
+    <nav class="bg-gray-800 p-6">
+      <div class="container mx-auto flex justify-between items-center">
+          <a href="/" class="text-lg font-semibold text-white hover:text-indigo-500">Bookstore</a>
+          <a href="/cart" class="flex items-center text-white hover:text-indigo-500">
+              <span class="font-bold">CART</span>
+              <span class="px-2">/</span>
+              <span class="font-bold">${{totalPrice}}</span>
+              <i class="fas fa-shopping-basket px-2"></i>
+          </a>
+      </div>
+    </nav>
+
+    <div class="container mx-auto py-10">
+      <h1 class="text-3xl font-bold mb-6 text-indigo-500">Admin Dashboard</h1>
+      <table class="w-full table-auto mb-6">
+        <thead>
+          <tr class="bg-gray-200 text-gray-700">
+            <th class="text-left py-2 px-4">Title</th>
+            <th class="text-left py-2 px-4">Author</th>
+            <th class="text-left py-2 px-4">Price</th>
+            <th class="text-left py-2 px-4">Edit</th>
+            <th class="text-left py-2 px-4">Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each books}}
+            <tr class="border-b border-gray-200">
+              <td class="text-left py-2 px-4">{{this.title}}</td>
+              <td class="text-left py-2 px-4">{{this.author}}</td>
+              <td class="text-left py-2 px-4">${{this.price}}</td>
+              <td class="text-left py-2 px-4">
+                  <form method="POST" action="/admin/edit-book">
+                    <input type="hidden" name="id" value="{{this.id}}">
+                    <button type="submit" class="text-indigo-500 hover:text-indigo-700 mr-2">
+                      <i class="fas fa-edit text-xl"></i>
+                    </button>
+                  </form>
+              </td>
+              <td class="text-left py-2 px-4">
+                  <form method="POST" action="/admin/delete-book">
+                    <input type="hidden" name="id" value="{{this.id}}">
+                    <button type="submit" class="text-red-500 hover:text-red-700">
+                      <i class="fas fa-trash text-xl"></i>
+                    </button>
+                  </form>
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

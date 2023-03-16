@@ -23,8 +23,7 @@ let books = [
     author: 'F. Scott Fitzgerald',
     releaseDate: 'April 10, 1925',
     price: 12.99,
-    image: 'https://tse1.mm.bing.net/th?id=OIP.dAVRw87IavkvuX_894QEzwAAAA&pid=Api',
-    description: ''
+    image: 'https://tse1.mm.bing.net/th?id=OIP.dAVRw87IavkvuX_894QEzwAAAA&pid=Api'
   },
   {
     id: 1,
@@ -107,7 +106,42 @@ app.post('/checkout-done', (req, res) => {
 //! End Cards
 //////////////
 //! Admin
+app.get('/admin', (req, res) => {
+  res.render('admin-login');
+});
 
+//* Authenticate login
+app.post('/admin/dashboard', (req, res) => {
+  const { username, password } = req.body;
+  if (username !== 'admin' && password !== 'password') {
+    res.redirect('/');
+  } else {
+    res.render('admin-dashboard', {
+      books
+    });
+  };
+});
+
+//* Edit Book
+app.post('/admin/edit-book', (req, res) => {
+  const { bookId }= req.body;
+  const book = books[bookId];
+  res.render('edit-book', {
+    book
+  });
+});
+
+//* Edit Book render
+app.post('/admin/edit-book/done', (req, res) => {
+  let { bookId, titleBook, author, price, releaseDate, image } = req.body;
+  let book = books[bookId];
+  book.title = titleBook;
+  book.author = author;
+  book.price = price;
+  book.releaseDate = releaseDate;
+  book.image = image;
+  res.redirect('/admin/dashboard');
+});
 //! End Admin
 //////////////
 //!! Start server
