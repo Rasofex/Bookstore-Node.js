@@ -9,16 +9,23 @@
     	<title>User Profile</title>
     </head>
     <body>
-        <nav class="navbar navbar-dark bg-dark">
-            <div class="container">
-                <a href="/" class="navbar-brand">Bookstore</a>
-                <a href="/cart" class="navbar-text text-white">
-                    <span class="fw-bold">CART</span>
-                    <span class="px-2">/</span>
-                    <span class="fw-bold">${{totalPrice}}</span>
-                    <i class="fas fa-shopping-basket px-2"></i>
-                </a>
+        <nav class="bg-gray-800 p-6">
+          <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-lg font-semibold text-white hover:text-indigo-500">Bookstore</a>
+            <div class="flex items-center">
+              <a href="/admin" class="text-lg font-semibold text-white hover:text-indigo-500">Admin panel</a>
+              <a href="/profile" class="flex items-center text-white hover:text-indigo-500 ml-4">
+                <span class="font-bold">Profile</span>
+                <img src="{{profile.image}}" class="h-6 w-6 rounded-full ml-2" alt="Profile image">
+              </a>
+              <a href="/cart" class="flex items-center text-white hover:text-indigo-500 ml-4">
+                <span class="font-bold">CART</span>
+                <span class="px-2">/</span>
+                <span class="font-bold">${{totalPrice}}</span>
+                <i class="fas fa-shopping-basket px-2"></i>
+              </a>
             </div>
+          </div>
         </nav>
 
     	<div class="container py-5">
@@ -28,26 +35,26 @@
 		    <main class="row g-3">
 		    	<div class="col-md-4 bg-white rounded-lg shadow">
 		    		<div class="p-4">
-		    			<img class="w-50 h-50 rounded-circle mx-auto d-block" src="{{image}}" alt="User profile picture">
-		    			<h2 class="h5 fw-bold text-center mt-3">{{name}}</h2>
+		    			<img class="w-50 h-50 rounded-circle mx-auto d-block" src="{{profile.image}}" alt="User profile picture">
+		    			<h2 class="h5 fw-bold text-center mt-3">{{profile.name}}</h2>
 		    		</div>
 		    		<div class="border-top border-gray-200 p-4">
 		    			<h3 class="h5 fw-medium text-gray-900 mb-3">Контактная информация</h3>
 		    			<dl>
 		    				<div class="d-flex align-items-center">
 		    					<dt class="text-gray-500 me-2">Почта:</dt>
-		    					<dd class="text-gray-900">{{email}}</dd>
+		    					<dd class="text-gray-900">{{profile.email}}</dd>
 		    				</div>
 		    				<div class="d-flex align-items-center mt-2">
-		    					<dt class="text-gray-500 me-2">Телефое:</dt>
-		    					<dd class="text-gray-900">{{phone}}</dd>
+		    					<dt class="text-gray-500 me-2">Телефон:</dt>
+		    					<dd class="text-gray-900">{{profile.phone}}</dd>
 		    				</div>
 		    			</dl>
 		    		</div>
 		    	</div>
 		    	<div class="col-md-8 bg-white rounded-lg shadow p-4">
 		    		<h2 class="h5 fw-bold text-gray-900 mb-3">Био</h2>
-		    		<p class="text-gray-500">{{bio}}</p>
+		    		<p class="text-gray-500">{{profile.bio}}</p>
 		    	</div>
 		    </main>
 	    </div>

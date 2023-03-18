@@ -54,19 +54,27 @@ let books = [
 //? Set up cart data
 let cart = [];
 
+//? Profile generation
+let profile = {
+  image: faker.internet.avatar(),
+  name: faker.name.fullName(),
+  email: faker.internet.email(),
+  phone: faker.phone.number(),
+  bio: faker.lorem.paragraphs(5)
+};
 //!! Routes
 //////////////
 //! Cards
 //* Main page
 app.get('/', (req, res) => {
   const totalPrice = cart.reduce((total, book) => total + book.price, 0);
-  res.render('index', { books, totalPrice });
+  res.render('index', { books, totalPrice, profile });
 });
 
 //* Cart page
 app.get('/cart', (req, res) => {
   const totalPrice = cart.reduce((total, book) => total + book.price, 0);
-  res.render('cart', { cart, totalPrice });
+  res.render('cart', { cart, totalPrice, profile });
 });
 
 //* Add To Cart
@@ -92,7 +100,7 @@ app.post('/remove-from-cart', (req, res) => {
 //* Checkout
 app.post('/checkout', (req, res) => {
   const totalPrice = cart.reduce((total, book) => total + book.price, 0);
-  res.render('checkout', { cart, totalPrice });
+  res.render('checkout', { cart, totalPrice, profile });
 });
 
 //* Checkout / Done
@@ -100,14 +108,16 @@ app.post('/checkout-done', (req, res) => {
   const totalPrice = cart.reduce((total, book) => total + book.price, 0);
   const trackingNumber = Math.floor(Math.random() * 1000000000);
   const { address, name } = req.body;
-  res.render('checkout-done', { totalPrice, address, name, trackingNumber });
+  res.render('checkout-done', { totalPrice, address, name, trackingNumber, profile });
   cart = [];
 });
 //! End Cards
 //////////////
 //! Admin
 app.get('/admin', (req, res) => {
-  res.render('admin-login');
+  res.render('admin-login', {
+    profile
+  });
 });
 
 app.get('/admin/dashboard', (req, res) => {
@@ -185,13 +195,8 @@ app.post('/admin/add-book/done',  (req, res) => {
 //////////////
 //! User Profile
 app.get('/profile', (req, res) => {
-  let image = faker.internet.avatar();
-  let name = faker.name.fullName();
-  let email = faker.internet.email();
-  let phone = faker.phone.number();
-  let bio = faker.lorem.paragraphs(5)
   res.render('profile', {
-    image, name, email, phone, bio
+    profile
   });
 });
 //!! Start server

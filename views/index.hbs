@@ -10,17 +10,24 @@
     </head>
     <body>
         <nav class="bg-gray-800 p-6">
-            <div class="container mx-auto flex justify-between items-center">
-                <a href="/" class="text-lg font-semibold text-white hover:text-indigo-500">Bookstore</a>
-                <a href="/admin" class="text-lg font-semibold text-white hover:text-indigo-500">Admin panel</a>
-                <a href="/cart" class="flex items-center text-white hover:text-indigo-500">
-                    <span class="font-bold">CART</span>
-                    <span class="px-2">/</span>
-                    <span class="font-bold">${{totalPrice}}</span>
-                    <i class="fas fa-shopping-basket px-2"></i>
-                </a>
+          <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-lg font-semibold text-white hover:text-indigo-500">Bookstore</a>
+            <div class="flex items-center">
+              <a href="/admin" class="text-lg font-semibold text-white hover:text-indigo-500">Admin panel</a>
+              <a href="/profile" class="flex items-center text-white hover:text-indigo-500 ml-4">
+                <span class="font-bold">Profile</span>
+                <img src="{{profile.image}}" class="h-6 w-6 rounded-full ml-2" alt="Profile image">
+              </a>
+              <a href="/cart" class="flex items-center text-white hover:text-indigo-500 ml-4">
+                <span class="font-bold">CART</span>
+                <span class="px-2">/</span>
+                <span class="font-bold">${{totalPrice}}</span>
+                <i class="fas fa-shopping-basket px-2"></i>
+              </a>
             </div>
+          </div>
         </nav>
+
 
         <div class="container mx-auto py-10">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
