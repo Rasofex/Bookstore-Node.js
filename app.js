@@ -110,6 +110,12 @@ app.get('/admin', (req, res) => {
   res.render('admin-login');
 });
 
+app.get('/admin/dashboard', (req, res) => {
+  res.render('admin-dashboard', {
+    books
+  });
+});
+
 //* Authenticate login
 app.post('/admin/dashboard', (req, res) => {
   const { username, password } = req.body;
@@ -124,8 +130,8 @@ app.post('/admin/dashboard', (req, res) => {
 
 //* Edit Book
 app.post('/admin/edit-book', (req, res) => {
-  const { bookId }= req.body;
-  const book = books[bookId];
+  const { id }= req.body;
+  const book = books[id];
   res.render('edit-book', {
     book
   });
@@ -137,8 +143,8 @@ app.post('/admin/edit-book/done', (req, res) => {
   let book = books[bookId];
   book.title = titleBook;
   book.author = author;
-  book.price = price;
   book.releaseDate = releaseDate;
+  book.price = price;
   book.image = image;
   res.redirect('/admin/dashboard');
 });

@@ -20,7 +20,6 @@
               </a>
           </div>
         </nav>
-
         <div class="container mx-auto py-10">
             <h1 class="text-3xl font-bold mb-6 text-indigo-500">Edit Book</h1>
             <form method="post" action="/admin/edit-book/done">
@@ -29,31 +28,31 @@
                     <label class="block text-gray-700 font-bold mb-2" for="title">
                         Title
                     </label>
-                    <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="title" type="text" required>
+                    <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" autocomplete="off" id="title" name="titleBook" type="text" value="{{book.title}}" required>
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700 font-bold mb-2" for="author">
                         Author
                     </label>
-                    <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="author" type="text" required>
+                    <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" autocomplete="off" id="author" name="author" type="text" value="{{book.author}}" required>
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700 font-bold mb-2" for="price">
                         Price
                     </label>
-                    <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="price" type="number" required>
+                    <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" autocomplete="off" id="price" name="price" type="number" value="{{book.price}}" required>
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700 font-bold mb-2" for="releaseDate">
                         Release date
                     </label>
-                    <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="releaseDate" type="text" required>
+                    <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="releaseDate" autocomplete="off" name="releaseDate" type="text" value="{{book.releaseDate}}" required>
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700 font-bold mb-2" for="image">
                         Image
                     </label>
-                    <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="image" type="text" placeholder="http://example.com/example.png" required>
+                    <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="image" autocomplete="off" name="image" type="text" value="{{book.image}}" placeholder="http://example.com/example.png" required>
                 </div>
                 <div class="flex justify-end">
                     <button type="submit" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
