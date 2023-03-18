@@ -54,13 +54,21 @@ let books = [
 //? Set up cart data
 let cart = [];
 
+//? user
+let image = faker.internet.avatar();
+let name = faker.name.fullName();
+let email = faker.internet.email();
+let phone = faker.phone.number();
+let bio = faker.lorem.paragraphs(5)
+
 //!! Routes
 //////////////
 //! Cards
+
 //* Main page
 app.get('/', (req, res) => {
   const totalPrice = cart.reduce((total, book) => total + book.price, 0);
-  res.render('index', { books, totalPrice });
+  res.render('index', { books, totalPrice, image });
 });
 
 //* Cart page
@@ -185,11 +193,6 @@ app.post('/admin/add-book/done',  (req, res) => {
 //////////////
 //! User Profile
 app.get('/profile', (req, res) => {
-  let image = faker.internet.avatar();
-  let name = faker.name.fullName();
-  let email = faker.internet.email();
-  let phone = faker.phone.number();
-  let bio = faker.lorem.paragraphs(5)
   res.render('profile', {
     image, name, email, phone, bio
   });

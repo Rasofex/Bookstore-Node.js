@@ -4,36 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="fonts/fontawesome/css/all.css">
     <title>Admin Login</title>
   </head>
-  <nav class="bg-gray-800 p-6">
-      <div class="container mx-auto flex justify-between items-center">
-          <a href="/" class="text-lg font-semibold text-white hover:text-indigo-500">Bookstore</a>
-          <a href="/cart" class="flex items-center text-white hover:text-indigo-500">
-              <span class="font-bold">CART</span>
-              <span class="px-2">/</span>
-              <span class="font-bold">${{totalPrice}}</span>
-              <i class="fas fa-shopping-basket px-2"></i>
-          </a>
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <a href="/" class="navbar-brand">Bookstore</a>
+            <a href="/cart" class="navbar-text text-white">
+                <span class="fw-bold">Корзина</span>
+                <span class="px-2">/</span>
+                <span class="fw-bold">${{totalPrice}}</span>
+                <i class="fas fa-shopping-basket px-2"></i>
+            </a>
+        </div>
+    </nav>
+    
+    <div class="container mx-auto py-10">
+      <h1 class="text-center text-indigo-500 my-5 fs-3 fw-bold">Admin Login</h1>
+    <form class="max-w-md mx-auto p-3 p-md-5 bg-white rounded-md shadow" method="post" action="/admin/dashboard">
+      <div class="mb-3">
+        <label class="form-label text-gray-500 font-semibold" for="username">Логин</label>
+        <input class="form-control border border-gray-300 rounded-md py-2" type="text" id="username" name="username" autocomplete="off" value="admin" placeholder="login -> admin">
       </div>
-  </nav>
-  
-  <body class="bg-gray-100">
-    <h1 class="text-3xl text-center font-semibold text-indigo-500 my-10">Admin Login</h1>
-    <form class="max-w-md mx-auto p-6 bg-white rounded-md shadow-md" method="post" action="/admin/dashboard">
-      <div class="mb-4">
-        <label class="block text-gray-500 font-semibold" for="username">Username</label>
-        <input class="mt-1 border border-gray-300 px-3 py-2 w-full rounded-md focus:outline-none focus:border-indigo-500" type="text" id="username" name="username" autocomplete="off" value="admin" placeholder="login -> admin">
-      </div>
-      <div class="mb-4">
-        <label class="block text-gray-500 font-semibold" for="password">Password</label>
-        <input class="mt-1 border border-gray-300 px-3 py-2 w-full rounded-md focus:outline-none focus:border-indigo-500" type="password" id="password" name="password" autocomplete="off" value="password" placeholder="password -> password">
+      <div class="mb-3">
+        <label class="form-label text-gray-500 font-semibold" for="password">Пароль</label>
+        <input class="form-control border border-gray-300 rounded-md py-2" type="password" id="password" name="password" autocomplete="off" value="password" placeholder="password -> password">
       </div>
       <div>
-        <button class="bg-indigo-500 hover:bg-indigo-600 text-white py-2 px-4 rounded-md" type="submit">Login</button>
+        <button class="btn btn-primary fw-bold w-100 py-2 rounded-md" type="submit">Войти</button>
       </div>
     </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   </body>
 </html>
