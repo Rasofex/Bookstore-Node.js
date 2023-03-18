@@ -95,7 +95,7 @@ app.post('/checkout', (req, res) => {
   res.render('checkout', { cart, totalPrice });
 });
 
-//* Checkout Done
+//* Checkout / Done
 app.post('/checkout-done', (req, res) => {
   const totalPrice = cart.reduce((total, book) => total + book.price, 0);
   const trackingNumber = Math.floor(Math.random() * 1000000000); // Generate random tracking number
@@ -146,6 +146,39 @@ app.post('/admin/edit-book/done', (req, res) => {
   book.releaseDate = releaseDate;
   book.price = price;
   book.image = image;
+  res.redirect('/admin/dashboard');
+});
+
+//* Delete book
+app.post('/admin/delete-book', (req, res) => {
+  const { id }= req.body;
+  const book = books[id];
+  if (book) {
+    books.splice(id, 1);
+    for (let i = id; i < books.length; i++) {
+      books[i].id = i;
+    }
+  }
+  res.redirect('/admin/dashboard');
+});
+
+//* Add a new book
+app.post('/admin/add-book', (req, res) => {
+  res.render('add-book');
+});
+
+//* Add a new book / Done
+app.post('/admin/add-book/done',  (req, res) => {
+  let { titleBook, author, price, releaseDate, image } = req.body;
+  let book = {
+    id: books.length + 1,
+    title: titleBook,
+    author: author,
+    price: price,
+    releaseDate: releaseDate,
+    image: image,
+  };
+  books.push(book);
   res.redirect('/admin/dashboard');
 });
 //! End Admin
