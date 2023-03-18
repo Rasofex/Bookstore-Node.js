@@ -98,7 +98,7 @@ app.post('/checkout', (req, res) => {
 //* Checkout / Done
 app.post('/checkout-done', (req, res) => {
   const totalPrice = cart.reduce((total, book) => total + book.price, 0);
-  const trackingNumber = Math.floor(Math.random() * 1000000000); // Generate random tracking number
+  const trackingNumber = Math.floor(Math.random() * 1000000000);
   const { address, name } = req.body;
   res.render('checkout-done', { totalPrice, address, name, trackingNumber });
   cart = [];
@@ -183,6 +183,17 @@ app.post('/admin/add-book/done',  (req, res) => {
 });
 //! End Admin
 //////////////
+//! User Profile
+app.get('/profile', (req, res) => {
+  let image = faker.internet.avatar();
+  let name = faker.name.fullName();
+  let email = faker.internet.email();
+  let phone = faker.phone.number();
+  let bio = faker.lorem.paragraphs(5)
+  res.render('profile', {
+    image, name, email, phone, bio
+  });
+});
 //!! Start server
 const PORT = 80;
 app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
