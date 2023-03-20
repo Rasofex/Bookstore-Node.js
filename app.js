@@ -57,10 +57,10 @@ let cart = [];
 //? Profile generation
 let profile = {
   image: faker.internet.avatar(),
-  name: faker.name.fullName(),
+  name: faker.name.fullName({ sex: 'male' }),
   email: faker.internet.email(),
   phone: faker.phone.number(),
-  bio: faker.lorem.paragraphs(5)
+  bio: faker.lorem.paragraph(2)
 };
 //!! Routes
 //////////////
@@ -115,8 +115,10 @@ app.post('/checkout-done', (req, res) => {
 //////////////
 //! Admin
 app.get('/admin', (req, res) => {
+  const totalPrice = cart.reduce((total, book) => total + book.price, 0);
   res.render('admin-login', {
-    profile
+    profile,
+    totalPrice
   });
 });
 
@@ -195,8 +197,14 @@ app.post('/admin/add-book/done',  (req, res) => {
 //////////////
 //! User Profile
 app.get('/profile', (req, res) => {
+  const totalPrice = cart.reduce((total, book) => total + book.price, 0);
+  let userBooks = [0, 1, 2, 3];
+  let userBookList = userBooks.map(id => books.find(book => book.id === id));
   res.render('profile', {
-    profile
+    profile,
+    userBookList,
+    books,
+    totalPrice
   });
 });
 //!! Start server
