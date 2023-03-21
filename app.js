@@ -48,6 +48,14 @@ let books = [
     releaseDate: 'August 1, 1994',
     price: 12.99,
     image: 'https://wallpaper.dog/large/198914.jpg'
+  },
+  {
+    id: 4,
+    title: "The Hobbit",
+    author: "J.R.R. Tolkien",
+    releaseDate: "1937",
+    price: 10.99,
+    image: "https://images.unsplash.com/photo-1613575363165-5a67fadc017c?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb"
   }
 ];
 

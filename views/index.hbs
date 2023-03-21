@@ -7,6 +7,7 @@
         <title>Bookstore</title>
         <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" href="fonts/fontawesome/css/all.css">
+        <script src="js/index.js" defer></script>
     </head>
     <body>
         <nav class="bg-gray-800 p-6">
@@ -28,12 +29,24 @@
           </div>
         </nav>
 
-
         <div class="container mx-auto py-10">
+            <div class="px-4 py-2">
+              <input class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+                     type="text"
+                     name="search"
+                     placeholder="Search...">
+              <button type="submit"
+                      class="ml-2 px-3 py-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600">
+                Search
+              </button>
+            </div>
+            
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {{#each books}}
-                    <div class="bg-white rounded-lg overflow-hidden shadow-md">
-                        <img class="w-full object-cover" src="{{image}}" alt="{{title}}">
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md flex flex-col card-for-search">
+                        <div class="h-full">
+                            <img class="object-cover h-full" src="{{image}}" alt="{{title}}">
+                        </div>
                         <div class="p-6">
                             <h2 class="font-bold text-2xl mb-2 text-indigo-500">{{title}}</h2>
                             <p class="text-gray-500 text-base mb-2">{{author}}</p>
@@ -42,7 +55,7 @@
                             <form action="/add-to-cart" method="POST">
                                 <input type="hidden" name="bookId" value="{{id}}">
                                 <button type="submit" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded">
-                                  Add to Cart
+                                    Add to Cart
                                 </button>
                             </form>
                         </div>
